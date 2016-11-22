@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.ActivitiesMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.Activities">
+		<id column="ActivityID" property="activityid" jdbcType="INTEGER" />
+		<result column="ActivityNum" property="activitynum" jdbcType="VARCHAR" />
+		<result column="ActivityTypeID" property="activitytypeid"
+			jdbcType="INTEGER" />
+		<result column="ActivityPic" property="activitypic" jdbcType="INTEGER" />
+		<result column="ActivityName" property="activityname" jdbcType="VARCHAR" />
+		<result column="ActivityDetail" property="activitydetail"
+			jdbcType="VARCHAR" />
+		<result column="ActivityStart" property="activitystart"
+			jdbcType="VARCHAR" />
+		<result column="ActivityEnd" property="activityend" jdbcType="VARCHAR" />
+		<result column="ActivityAdd" property="activityadd" jdbcType="VARCHAR" />
+		<result column="PeopleCount" property="peoplecount" jdbcType="INTEGER" />
+		<result column="ActivityCost" property="activitycost" jdbcType="VARCHAR" />
+		<result column="ActivityFlow" property="activityflow" jdbcType="VARCHAR" />
+		<result column="ActivityStatus" property="activitystatus"
+			jdbcType="INTEGER" />
+		<result column="CreateTime" property="createtime" jdbcType="VARCHAR" />
+		<result column="EnterCount" property="entercount" jdbcType="INTEGER" />
+		<result column="ifMy" property="ifmy" jdbcType="INTEGER" />
+		<result column="UserId" property="userid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ActivityID, ActivityNum, ActivityTypeID, ActivityPic,
+		ActivityName,
+		ActivityDetail,
+		ActivityStart, ActivityEnd, ActivityAdd,
+		PeopleCount, ActivityCost, ActivityFlow,
+		ActivityStatus,CreateTime,EnterCount,ifMy,UserId
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from activities
+		where ActivityID = #{activityid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		activities
+		where ActivityID = #{activityid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.Activities">
+		insert into activities
+		(ActivityID, ActivityNum, ActivityTypeID,
+		ActivityPic, ActivityName,
+		ActivityDetail,
+		ActivityStart, ActivityEnd, ActivityAdd,
+		PeopleCount,
+		ActivityCost, ActivityFlow,
+		ActivityStatus,CreateTime,EnterCount,ifMy,UserId)
+		values
+		(#{activityid,jdbcType=INTEGER},
+		#{activitynum,jdbcType=VARCHAR},
+		#{activitytypeid,jdbcType=INTEGER},
+		#{activitypic,jdbcType=INTEGER},
+		#{activityname,jdbcType=VARCHAR},
+		#{activitydetail,jdbcType=VARCHAR},
+		#{activitystart,jdbcType=VARCHAR},
+		#{activityend,jdbcType=VARCHAR},
+		#{activityadd,jdbcType=VARCHAR},
+		#{peoplecount,jdbcType=INTEGER},
+		#{activitycost,jdbcType=VARCHAR},
+		#{activityflow,jdbcType=VARCHAR},
+		#{activitystatus,jdbcType=INTEGER},
+		#{createtime,jdbcType=VARCHAR},
+		#{entercount,jdbcType=INTEGER},
+		#{ifmy,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.Activities">
+		insert into activities
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="activityid != null">
+				ActivityID,
+			</if>
+			<if test="activitynum != null">
+				ActivityNum,
+			</if>
+			<if test="activitytypeid != null">
+				ActivityTypeID,
+			</if>
+			<if test="activitypic != null">
+				ActivityPic,
+			</if>
+			<if test="activityname != null">
+				ActivityName,
+			</if>
+			<if test="activitydetail != null">
+				ActivityDetail,
+			</if>
+			<if test="activitystart != null">
+				ActivityStart,
+			</if>
+			<if test="activityend != null">
+				ActivityEnd,
+			</if>
+			<if test="activityadd != null">
+				ActivityAdd,
+			</if>
+			<if test="peoplecount != null">
+				PeopleCount,
+			</if>
+			<if test="activitycost != null">
+				ActivityCost,
+			</if>
+			<if test="activityflow != null">
+				ActivityFlow,
+			</if>
+			<if test="activitystatus != null">
+				ActivityStatus,
+			</if>
+			<if test="createtime != null">
+				CreateTime,
+			</if>
+			<if test="ifmy != null">
+				ifMy,
+			</if>
+			<if test="entercount != null">
+				EnterCount,
+			</if>
+			<if test="userid != null">
+				UserId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="activityid != null">
+				#{activityid,jdbcType=INTEGER},
+			</if>
+			<if test="activitynum != null">
+				#{activitynum,jdbcType=VARCHAR},
+			</if>
+			<if test="activitytypeid != null">
+				#{activitytypeid,jdbcType=INTEGER},
+			</if>
+			<if test="activitypic != null">
+				#{activitypic,jdbcType=INTEGER},
+			</if>
+			<if test="activityname != null">
+				#{activityname,jdbcType=VARCHAR},
+			</if>
+			<if test="activitydetail != null">
+				#{activitydetail,jdbcType=VARCHAR},
+			</if>
+			<if test="activitystart != null">
+				#{activitystart,jdbcType=VARCHAR},
+			</if>
+			<if test="activityend != null">
+				#{activityend,jdbcType=VARCHAR},
+			</if>
+			<if test="activityadd != null">
+				#{activityadd,jdbcType=VARCHAR},
+			</if>
+			<if test="peoplecount != null">
+				#{peoplecount,jdbcType=INTEGER},
+			</if>
+			<if test="activitycost != null">
+				#{activitycost,jdbcType=VARCHAR},
+			</if>
+			<if test="activityflow != null">
+				#{activityflow,jdbcType=VARCHAR},
+			</if>
+			<if test="activitystatus != null">
+				#{activitystatus,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ifmy != null">
+				#{ifmy,jdbcType=INTEGER},
+			</if>
+			<if test="entercount != null">
+				#{entercount,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.Activities">
+		update activities
+		<set>
+			<if test="activitynum != null">
+				ActivityNum = #{activitynum,jdbcType=VARCHAR},
+			</if>
+			<if test="activitytypeid != null">
+				ActivityTypeID = #{activitytypeid,jdbcType=INTEGER},
+			</if>
+			<if test="activitypic != null">
+				ActivityPic = #{activitypic,jdbcType=INTEGER},
+			</if>
+			<if test="activityname != null">
+				ActivityName = #{activityname,jdbcType=VARCHAR},
+			</if>
+			<if test="activitydetail != null">
+				ActivityDetail = #{activitydetail,jdbcType=VARCHAR},
+			</if>
+			<if test="activitystart != null">
+				ActivityStart = #{activitystart,jdbcType=VARCHAR},
+			</if>
+			<if test="activityend != null">
+				ActivityEnd = #{activityend,jdbcType=VARCHAR},
+			</if>
+			<if test="activityadd != null">
+				ActivityAdd = #{activityadd,jdbcType=VARCHAR},
+			</if>
+			<if test="peoplecount != null">
+				PeopleCount = #{peoplecount,jdbcType=INTEGER},
+			</if>
+			<if test="activitycost != null">
+				ActivityCost = #{activitycost,jdbcType=VARCHAR},
+			</if>
+			<if test="activityflow != null">
+				ActivityFlow = #{activityflow,jdbcType=VARCHAR},
+			</if>
+			<if test="activitystatus != null">
+				ActivityStatus = #{activitystatus,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				CreateTime = #{createtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ifmy != null">
+				ifMy = #{ifmy,jdbcType=INTEGER},
+			</if>
+			<if test="entercount != null">
+				EnterCount = #{entercount,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				UserId = #{userid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ActivityID = #{activityid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.Activities">
+		update activities
+		set ActivityNum = #{activitynum,jdbcType=VARCHAR},
+		ActivityTypeID =
+		#{activitytypeid,jdbcType=INTEGER},
+		ActivityPic =
+		#{activitypic,jdbcType=INTEGER},
+		ActivityName =
+		#{activityname,jdbcType=VARCHAR},
+		ActivityDetail =
+		#{activitydetail,jdbcType=VARCHAR},
+		ActivityStart =
+		#{activitystart,jdbcType=VARCHAR},
+		ActivityEnd =
+		#{activityend,jdbcType=VARCHAR},
+		ActivityAdd =
+		#{activityadd,jdbcType=VARCHAR},
+		PeopleCount =
+		#{peoplecount,jdbcType=INTEGER},
+		ActivityCost =
+		#{activitycost,jdbcType=VARCHAR},
+		ActivityFlow =
+		#{activityflow,jdbcType=VARCHAR},
+		ActivityStatus =
+		#{activitystatus,jdbcType=INTEGER},
+		Createtime =
+		#{createtime,jdbcType=VARCHAR},
+		ifMy =
+		#{ifmy,jdbcType=INTEGER},
+		EnterCount =
+		#{entercount,jdbcType=INTEGER},
+		UserId =
+		#{userid,jdbcType=INTEGER}
+		where ActivityID =
+		#{activityid,jdbcType=INTEGER}
+
+	</update>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="map">
+		select * from activities t WHERE 1=1
+		<if test="activitycost == 0 ">
+
+		</if>
+		<if test="activitycost == 1 ">
+			AND (select dayofweek(ActivityStart)) &lt;= 6
+			AND (select dayofweek(ActivityStart)) &gt;= 1
+		</if>
+		<if test="activitycost == 2  ">
+			AND (select dayofweek(ActivityStart)) = 7
+		</if>
+		<if test="activitycost == 3  ">
+			AND (select dayofweek(ActivityStart)) = 1
+		</if>
+		<if test="activitycost == 4  ">
+			AND ActivityCost = 0
+		</if>
+		<if test="activitycost == 5  ">
+			AND ActivityCost != 0
+		</if>
+		<if test="activitycost == 6  ">
+			AND ifMy = 0
+		</if>
+		AND ActivityStatus=0 order by ActivityID desc LIMIT
+		#{startItem},#{endItem}
+	</select>
+	<select id="getActivitiesListByUserid" resultMap="BaseResultMap"
+		parameterType="map">
+		select t.* from activities t,usercollect c WHERE
+		t.ActivityID = c.activityid
+		AND c.userid = #{userid}
+		AND
+		t.ActivityStatus=0
+		order by t.ActivityID desc LIMIT
+		#{startItem},#{endItem}
+	</select>
+	<select id="getEnterActivitiesListByUserid" resultMap="BaseResultMap"
+		parameterType="map">
+		select t.* from activities t,userenter c WHERE
+		t.ActivityID = c.activityid
+		AND c.userid = #{userid}
+		AND
+		t.ActivityStatus=0
+		order by t.ActivityID desc LIMIT
+		#{startItem},#{endItem}
+	</select>
+	<select id="getActivitiesListByActivityVo" resultMap="BaseResultMap"
+		parameterType="com.sxh.vo.ActivityVo">
+		select * from activities t WHERE 1=1
+		<if test="activityname!= null and activityname!= '%%' ">
+			AND ActivityName LIKE #{activityname}
+		</if>
+		<if test="activitytypeid!= 0 and activitytypeid!= '0' ">
+			AND ActivityTypeID = #{activitytypeid}
+		</if>
+		<if test="activitycost==2 and activitycost== '2'.toString() ">
+			
+		</if>
+		<if test="activitycost==0 and activitycost== '0'.toString() ">
+			AND ActivityCost = 0
+		</if>
+		<if test="activitycost==1 and activitycost== '1'.toString() ">
+			AND ActivityCost != 0
+		</if>
+		<if test="activitystatus!= 4 and activitystatus!= '4' ">
+			AND ActivityStatus = #{activitystatus}
+		</if>
+		<if test="starttime!= null and starttime!= '' ">
+			AND CreateTime &gt;= #{starttime}
+		</if>
+		<if test="endtime!= null and endtime!= '' ">
+			AND CreateTime &lt;= #{endtime}
+		</if>
+		And ActivityStatus!=3 order by ActivityID desc
+	</select>
+	<select id="getCountActivityToday" parameterType="com.sxh.model.Activities"
+		resultMap="BaseResultMap">
+		select * from
+		activities WHERE CreateTime
+		LIKE
+		#{createtime,jdbcType=VARCHAR};
+	</select>
+	<select id="getHistoryActivitiesListByUserId" resultMap="BaseResultMap"
+		parameterType="com.sxh.vo.ActivityVo">
+		select t.* from activities t,userenter u
+		WHERE t.ActivityID=u.activityid
+		AND t.ActivityEnd &lt;= #{endtime}
+		AND
+		u.userid=#{userid}
+		And ActivityStatus!=3
+		order by t.ActivityID desc
+		LIMIT
+		#{startitem},#{enditem}
+	</select>
+
+</mapper>

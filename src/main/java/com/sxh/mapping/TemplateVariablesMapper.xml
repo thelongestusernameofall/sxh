@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.TemplateVariablesMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.TemplateVariables">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="TmpKey" property="tmpkey" jdbcType="VARCHAR" />
+		<result column="TmpName" property="tmpname" jdbcType="VARCHAR" />
+		<result column="TmpStatus" property="tmpstatus" jdbcType="INTEGER" />
+		<result column="DelStatus" property="delstatus" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, TmpKey, TmpName, TmpStatus, DelStatus
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from templatevariables
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		templatevariables
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.TemplateVariables">
+		insert into templatevariables
+		(ID, TmpKey, TmpName,
+		TmpStatus, DelStatus)
+		values
+		(#{id,jdbcType=INTEGER}, #{tmpkey,jdbcType=VARCHAR},
+		#{tmpname,jdbcType=VARCHAR},
+		#{tmpstatus,jdbcType=INTEGER},
+		#{delstatus,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.TemplateVariables">
+		insert into templatevariables
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="tmpkey != null">
+				TmpKey,
+			</if>
+			<if test="tmpname != null">
+				TmpName,
+			</if>
+			<if test="tmpstatus != null">
+				TmpStatus,
+			</if>
+			<if test="delstatus != null">
+				DelStatus,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tmpkey != null">
+				#{tmpkey,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpname != null">
+				#{tmpname,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpstatus != null">
+				#{tmpstatus,jdbcType=INTEGER},
+			</if>
+			<if test="delstatus != null">
+				#{delstatus,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.TemplateVariables">
+		update templatevariables
+		<set>
+			<if test="tmpkey != null">
+				TmpKey = #{tmpkey,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpname != null">
+				TmpName = #{tmpname,jdbcType=VARCHAR},
+			</if>
+			<if test="tmpstatus != null">
+				TmpStatus = #{tmpstatus,jdbcType=INTEGER},
+			</if>
+			<if test="delstatus != null">
+				DelStatus = #{delstatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.TemplateVariables">
+		update
+		templatevariables
+		set TmpKey = #{tmpkey,jdbcType=VARCHAR},
+		TmpName =
+		#{tmpname,jdbcType=VARCHAR},
+		TmpStatus = #{tmpstatus,jdbcType=INTEGER},
+		DelStatus = #{delstatus,jdbcType=INTEGER}
+		where ID =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getTemplateList" parameterType="com.sxh.model.TemplateVariables"
+		resultMap="BaseResultMap">
+		select t.* from templatevariables t WHERE t.DelStatus=0
+		<if test="tmpkey!= null and tmpkey!= '' ">
+			AND t.TmpKey LIKE '%${tmpkey}%'
+		</if>
+		<if test="tmpstatus!=2 and tmpstatus!= '2' ">
+			AND t.TmpStatus = #{tmpstatus,jdbcType=INTEGER}
+		</if>
+		order by t.ID desc
+	</select>
+</mapper>

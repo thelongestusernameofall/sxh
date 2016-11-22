@@ -1,0 +1,424 @@
+.vote_container {
+	padding: 30px
+}
+
+.vote_meta:first-child {
+	margin-top: 0
+}
+
+.vote_meta.option_setting {
+	margin-bottom: 20px
+}
+
+.vote_meta.option_setting .vote_meta_title {
+	padding: 10px;
+	background-color: #f4f5f9
+}
+
+.vote_meta .frm_tips {
+	width: auto
+}
+
+.vote_form {
+	margin-bottom: 0
+}
+
+.vote_meta_title {
+	font-weight: 400;
+	font-style: normal;
+	border-top: 1px solid #e7e7eb;
+	border-bottom: 1px solid #e7e7eb
+}
+
+.vote_meta_title .vote_meta_title_opr {
+	float: right
+}
+
+.vote_meta_title .vote_meta_title_opr a {
+	margin-left: 1em
+}
+
+.vote_num {
+	float: left;
+	margin-right: 1em
+}
+
+.vote_question {
+	display: block;
+	float: left;
+	width: 17em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-wrap: normal
+}
+
+.vote_warn {
+	color: #e15f63;
+	float: right
+}
+
+.vote_meta_detail .frm_control_group .link_delete {
+	margin-left: .5em
+}
+
+.vote_meta_detail .frm_control_group .frm_num {
+	color: #8d8d8d;
+	margin: 0 .5em 0 0;
+	height: 30px;
+	line-height: 30px
+}
+
+.vote_meta_detail .frm_control_group .frm_num.warning {
+	color: #e15f63
+}
+
+.vote_meta_detail .upload_box {
+	display: table-cell
+}
+
+.vote_meta_detail .frm_label_top {
+	margin-top: 0
+}
+
+.vote_meta_detail.tips_wrp {
+	border-top: 1px solid #e7e7eb;
+	padding-top: .5em
+}
+
+.vote_meta_detail.vote_meta_radio {
+	padding-left: 5em
+}
+
+.vote_meta_detail.vote_meta_radio .frm_label {
+	margin-top: 0
+}
+
+.vote_remove_link {
+	margin-left: .5em
+}
+
+.vote_edit .dialog_bd {
+	padding: 40px 0 15px;
+	height: 450px;
+	overflow-y: scroll
+}
+
+.vote_edit .dialog_bd .title_tab {
+	position: absolute;
+	top: 26px;
+	z-index: 2;
+	left: 0;
+	right: 0;
+	width: 100%;
+	background-color: #fff
+}
+
+.vote_edit .frm_label {
+	width: 4em
+}
+
+.vote_edit .frm_input_box {
+	width: 248px;
+	margin-right: .3em
+}
+
+.vote_meta_content {
+	padding: 2em 2em
+}
+
+.vote_meta_container .option_setting {
+	border: 1px solid #e7e7eb;
+	border-top: 0;
+	margin-bottom: 20px
+}
+
+.vote_meta_container .option_setting.close_vote .vote_meta_title {
+	background: 0;
+	border: 0;
+	border-top: 1px solid #e7e7eb
+}
+
+.frm_tips_btm {
+	width: auto
+}
+
+.img_container {
+	margin-left: 5em;
+	margin-top: .5em
+}
+
+.img_container .img_panel {
+	display: table-cell
+}
+
+.img_container .link_dele {
+	display: table-cell;
+	padding-left: .5em
+}
+
+.img_container img {
+	width: 75px;
+	height: 75px;
+	display: block
+}
+
+.vote_edit .upload_area .upload_file_box {
+	z-index: 4;
+	right: 0;
+	left: auto
+}
+
+.vote_edit .dialog_bd {
+	*position: relative;
+	overflow-x: hidden
+}
+
+.vote_edit .dialog_bd .title_tab {
+	*top: 0
+}
+
+.btn.btn_vote_add {
+	display: block;
+	height: 40px;
+	line-height: 40px
+}
+
+.icon_datepicker {
+	background: url("../img/vote_edit.png") 0 0 no-repeat;
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	display: inline-block
+}
+
+.datepicker_switch:hover .icon_datepicker {
+	background: url("../img/vote_edit.png") 0 -30px no-repeat
+}
+
+.date_select {
+	letter-spacing: -5px;
+	font-size: 0
+}
+
+.date_select .datepicker_area {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+
+.date_select .dropdown_menu,
+.date_select .datepicker_area {
+	vertical-align: middle;
+	margin: 0 3px;
+	letter-spacing: normal;
+	font-size: 14px
+}
+
+.date_select.timepicker .datepicker_area:first-child {
+	margin-left: 0
+}
+
+.date_select_gap {
+	vertical-align: middle;
+	margin: 0 3px;
+	letter-spacing: normal;
+	font-size: 14px
+}
+
+.datepicker_area {
+	line-height: normal
+}
+
+.datepicker_area .gap {
+	vertical-align: middle;
+	margin: 0 3px
+}
+
+.datepicker_switch {
+	position: relative;
+	cursor: pointer
+}
+
+.datepicker_switch .frm_input {
+	cursor: pointer;
+	text-align: center;
+	height: auto;
+	margin: 0
+}
+
+.datepicker_switch .icon_datepicker {
+	position: absolute;
+	right: 6px;
+	top: 50%;
+	margin-top: -9px
+}
+
+.btn.datepicker_switch {
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e7e7eb;
+	color: #222;
+	height: 30px;
+	line-height: 30px;
+	*line-height: 28px;
+	width: 80px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-right: 30px
+}
+
+.btn.datepicker_switch button {
+	color: #222
+}
+
+.btn.datepicker_switch:hover {
+	background-color: #e7e7eb;
+	background-image: -moz-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e7e7eb), to(#e7e7eb));
+	background-image: -webkit-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -o-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: linear-gradient(to bottom, #e7e7eb 0, #e7e7eb 100%);
+	border-color: #dadbe0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	color: #000
+}
+
+.btn.datepicker_switch:hover button {
+	color: #222
+}
+
+.btn.datepicker_switch.disabled {
+	background-color: #e7e7eb;
+	background-image: -moz-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e7e7eb), to(#e7e7eb));
+	background-image: -webkit-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -o-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: linear-gradient(to bottom, #e7e7eb 0, #e7e7eb 100%);
+	border-color: #dadbe0;
+	color: #a5a6aa;
+	cursor: default;
+	height: 30px;
+	line-height: 30px;
+	*line-height: 28px;
+	width: 80px;
+	padding-left: 4px;
+	padding-right: 4px
+}
+
+.btn.datepicker_switch.disabled button {
+	color: #a5a6aa;
+	cursor: default
+}
+
+.btn.datepicker_switch.disabled:hover {
+	background-color: #e7e7eb;
+	background-image: -moz-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e7e7eb), to(#e7e7eb));
+	background-image: -webkit-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -o-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: linear-gradient(to bottom, #e7e7eb 0, #e7e7eb 100%);
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	border-color: #dadbe0;
+	color: #a5a6aa
+}
+
+.btn.datepicker_switch.disabled:hover button {
+	color: #a5a6aa;
+	cursor: default
+}
+
+.btn.btn_search_datepicker {
+	display: inline-block;
+	letter-spacing: normal;
+	background-color: #fff;
+	background-image: -moz-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fff), to(#fff));
+	background-image: -webkit-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: -o-linear-gradient(top, #fff 0, #fff 100%);
+	background-image: linear-gradient(to bottom, #fff 0, #fff 100%);
+	border-color: #e7e7eb;
+	color: #222;
+	height: 32px;
+	line-height: 28px;
+	width: auto;
+	padding-left: 10px;
+	padding-right: 10px
+}
+
+.btn.btn_search_datepicker button {
+	color: #222
+}
+
+.btn.btn_search_datepicker:hover {
+	background-color: #e7e7eb;
+	background-image: -moz-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#e7e7eb), to(#e7e7eb));
+	background-image: -webkit-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: -o-linear-gradient(top, #e7e7eb 0, #e7e7eb 100%);
+	background-image: linear-gradient(to bottom, #e7e7eb 0, #e7e7eb 100%);
+	border-color: #dadbe0;
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	color: #000
+}
+
+.btn.btn_search_datepicker:hover button {
+	color: #222
+}
+
+.main_hd h2.title_border {
+	border-bottom: 1px solid #e7e7eb
+}
+
+.main_hd_bd h2 {
+	position: relative;
+	line-height: normal;
+	margin-bottom: 16px;
+	border-bottom: 1px solid #e7e7eb;
+	padding-right: 10em;
+	margin-bottom: 26px;
+	margin-top: 20px;
+	padding-bottom: 17px
+}
+
+.main_hd_bd .extra_info {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 14px
+}
+
+.main_hd_bd .extra_info.align_title {
+	margin-top: 4px;
+	line-height: normal
+}
+
+.main_bd {
+	padding: 0 62px
+}
+
+.page_msg.mini .inner {
+	padding: 0
+}
+
+.vote_container {
+	padding: 0 0 30px
+}
+
+.page_msg {
+	margin-bottom: 25px
+}
+
+.frm_tips_btm {
+	padding-bottom: 5px
+}

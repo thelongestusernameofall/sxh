@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.ShareActivitiesMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.ShareActivities">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="attachs" property="attachs" jdbcType="VARCHAR" />
+		<result column="describes" property="describes" jdbcType="VARCHAR" />
+		<result column="fbtime" property="fbtime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, userid, attachs, describes, fbtime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from shareactivities
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		shareactivities
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.ShareActivities">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+		insert into shareactivities (ID, userid, attachs,
+		describes, fbtime)
+		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
+		#{attachs,jdbcType=VARCHAR},
+		#{describes,jdbcType=VARCHAR},
+		#{fbtime,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.ShareActivities">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+		insert into shareactivities
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="attachs != null">
+				attachs,
+			</if>
+			<if test="describes != null">
+				describes,
+			</if>
+			<if test="fbtime != null">
+				fbtime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="attachs != null">
+				#{attachs,jdbcType=VARCHAR},
+			</if>
+			<if test="describes != null">
+				#{describes,jdbcType=VARCHAR},
+			</if>
+			<if test="fbtime != null">
+				#{fbtime,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.ShareActivities">
+		update shareactivities
+		<set>
+			<if test="userid != null">
+				userid = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="attachs != null">
+				attachs = #{attachs,jdbcType=VARCHAR},
+			</if>
+			<if test="describes != null">
+				describes = #{describes,jdbcType=VARCHAR},
+			</if>
+			<if test="fbtime != null">
+				fbtime = #{fbtime,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.ShareActivities">
+		update
+		shareactivities
+		set userid = #{userid,jdbcType=INTEGER},
+		attachs =
+		#{attachs,jdbcType=VARCHAR},
+		describes = #{describes,jdbcType=VARCHAR},
+		fbtime = #{fbtime,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getShareActivitiesList" resultMap="BaseResultMap"
+		parameterType="com.sxh.vo.AppShareActivityVo">
+		select * from shareactivities where userid not in (select shieid as id from shield where userid= #{userid,jdbcType=INTEGER}) order by ID desc LIMIT
+		#{startitem},#{enditem}
+	</select>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.UserLikeMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.UserLike">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="zanuserid" property="zanuserid" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="shareid" property="shareid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, zanuserid, userid, shareid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from userlike
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		userlike
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.UserLike">
+		insert into userlike (id,
+		zanuserid, userid,
+		shareid)
+		values (#{id,jdbcType=INTEGER},
+		#{zanuserid,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{shareid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.UserLike">
+		insert into userlike
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="zanuserid != null">
+				zanuserid,
+			</if>
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="shareid != null">
+				shareid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="zanuserid != null">
+				#{zanuserid,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="shareid != null">
+				#{shareid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.UserLike">
+		update userlike
+		<set>
+			<if test="zanuserid != null">
+				zanuserid = #{zanuserid,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				userid = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="shareid != null">
+				shareid = #{shareid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.UserLike">
+		update userlike
+		set zanuserid = #{zanuserid,jdbcType=INTEGER},
+		userid =
+		#{userid,jdbcType=INTEGER},
+		shareid = #{shareid,jdbcType=INTEGER}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getUserLikeListByShareId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select t.* from userlike t where t.shareid =
+		#{shareid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByShareidAndUserid" parameterType="com.sxh.model.UserLike">
+		delete from
+		userlike
+		where userid =
+		#{userid,jdbcType=INTEGER} and shareid =
+		#{shareid,jdbcType=INTEGER}
+	</delete>
+	<select id="getUserLikeListByUserLike" parameterType="com.sxh.model.UserLike"
+		resultMap="BaseResultMap">
+	select t.* from userlike t where t.shareid =
+	#{shareid,jdbcType=INTEGER} and t.userid =
+	#{userid,jdbcType=INTEGER}
+	</select>
+</mapper>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.MessageMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.Message">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="Reception" property="reception" jdbcType="VARCHAR" />
+		<result column="Title" property="title" jdbcType="VARCHAR" />
+		<result column="Content" property="content" jdbcType="VARCHAR" />
+		<result column="SendTime" property="sendtime" jdbcType="VARCHAR" />
+		<result column="MsgType" property="msgtype" jdbcType="INTEGER" />
+		<result column="IsRead" property="isread" jdbcType="INTEGER" />
+		<result column="MsgSorce" property="msgsorce" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, Reception, Title, Content, SendTime, MsgType, IsRead, MsgSorce
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from message
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from message
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.Message">
+		insert into message (ID, Reception, Title,
+		Content, SendTime, MsgType,
+		IsRead, MsgSorce)
+		values (#{id,jdbcType=INTEGER}, #{reception,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{sendtime,jdbcType=VARCHAR}, #{msgtype,jdbcType=INTEGER},
+		#{isread,jdbcType=INTEGER}, #{msgsorce,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.Message">
+		insert into message
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="reception != null">
+				Reception,
+			</if>
+			<if test="title != null">
+				Title,
+			</if>
+			<if test="content != null">
+				Content,
+			</if>
+			<if test="sendtime != null">
+				SendTime,
+			</if>
+			<if test="msgtype != null">
+				MsgType,
+			</if>
+			<if test="isread != null">
+				IsRead,
+			</if>
+			<if test="msgsorce != null">
+				MsgSorce,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="reception != null">
+				#{reception,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="sendtime != null">
+				#{sendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="msgtype != null">
+				#{msgtype,jdbcType=INTEGER},
+			</if>
+			<if test="isread != null">
+				#{isread,jdbcType=INTEGER},
+			</if>
+			<if test="msgsorce != null">
+				#{msgsorce,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.Message">
+		update message
+		<set>
+			<if test="reception != null">
+				Reception = #{reception,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				Title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				Content = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="sendtime != null">
+				SendTime = #{sendtime,jdbcType=VARCHAR},
+			</if>
+			<if test="msgtype != null">
+				MsgType = #{msgtype,jdbcType=INTEGER},
+			</if>
+			<if test="isread != null">
+				IsRead = #{isread,jdbcType=INTEGER},
+			</if>
+			<if test="msgsorce != null">
+				MsgSorce = #{msgsorce,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.Message">
+		update message
+		set Reception = #{reception,jdbcType=VARCHAR},
+		Title = #{title,jdbcType=VARCHAR},
+		Content = #{content,jdbcType=VARCHAR},
+		SendTime = #{sendtime,jdbcType=VARCHAR},
+		MsgType = #{msgtype,jdbcType=INTEGER},
+		IsRead = #{isread,jdbcType=INTEGER},
+		MsgSorce = #{msgsorce,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getMessageList" resultMap="BaseResultMap"
+		parameterType="map">
+		select t.* FROM message t WHERE t.MsgSorce=1
+		<if test="reception!= null and reception!= '' ">
+			AND Reception = #{reception}
+		</if>
+		<if test="content!= null and content!= '%%' ">
+			AND Content LIKE #{content}
+		</if>
+		<if test="starttime!= null and starttime!= '' ">
+			AND SendTime &gt;= #{starttime}
+		</if>
+		<if test="endtime!= null and endtime!= '' ">
+			AND SendTime &lt;= #{endtime}
+		</if>
+		ORDER BY ID DESC
+	</select>
+	<select id="getSmsList" resultMap="BaseResultMap" parameterType="map">
+		select t.* FROM message t WHERE t.MsgSorce=0
+		<if test="reception!= null and reception!= '' ">
+			AND Reception = #{reception}
+		</if>
+		<if test="content!= null and content!= '%%' ">
+			AND Content LIKE #{content}
+		</if>
+		<if test="starttime!= null and starttime!= '' ">
+			AND SendTime &gt;= #{starttime}
+		</if>
+		<if test="endtime!= null and endtime!= '' ">
+			AND SendTime &lt;= #{endtime}
+		</if>
+		ORDER BY ID DESC
+	</select>
+	<select id="getMessageListByUserid" resultMap="BaseResultMap"
+		parameterType="map">
+		select t.* FROM message t,userinfo u WHERE t.Reception = u.Phone AND
+		t.MsgSorce=1 AND u.UserID=#{userid} ORDER BY t.SendTime DESC LIMIT #{startItem},#{endItem}
+	</select>
+</mapper>

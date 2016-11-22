@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.AppversionMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.Appversion">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="VersionNum" property="versionnum" jdbcType="VARCHAR" />
+		<result column="AppPlatform" property="appplatform" jdbcType="VARCHAR" />
+		<result column="AppUrl" property="appurl" jdbcType="VARCHAR" />
+		<result column="AppSize" property="appsize" jdbcType="VARCHAR" />
+		<result column="UploadTime" property="uploadtime" jdbcType="VARCHAR" />
+		<result column="UpdateContent" property="updatecontent"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, VersionNum, AppPlatform, AppUrl, AppSize, UploadTime,
+		UpdateContent
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from appversion
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		appversion
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.Appversion">
+		insert into appversion (ID,
+		VersionNum, AppPlatform,
+		AppUrl, AppSize, UploadTime,
+		UpdateContent)
+		values (#{id,jdbcType=INTEGER}, #{versionnum,jdbcType=VARCHAR},
+		#{appplatform,jdbcType=VARCHAR},
+		#{appurl,jdbcType=VARCHAR},
+		#{appsize,jdbcType=VARCHAR}, #{uploadtime,jdbcType=VARCHAR},
+		#{updatecontent,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.Appversion">
+		insert into appversion
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="versionnum != null">
+				VersionNum,
+			</if>
+			<if test="appplatform != null">
+				AppPlatform,
+			</if>
+			<if test="appurl != null">
+				AppUrl,
+			</if>
+			<if test="appsize != null">
+				AppSize,
+			</if>
+			<if test="uploadtime != null">
+				UploadTime,
+			</if>
+			<if test="updatecontent != null">
+				UpdateContent,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="versionnum != null">
+				#{versionnum,jdbcType=VARCHAR},
+			</if>
+			<if test="appplatform != null">
+				#{appplatform,jdbcType=VARCHAR},
+			</if>
+			<if test="appurl != null">
+				#{appurl,jdbcType=VARCHAR},
+			</if>
+			<if test="appsize != null">
+				#{appsize,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadtime != null">
+				#{uploadtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatecontent != null">
+				#{updatecontent,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.Appversion">
+		update appversion
+		<set>
+			<if test="versionnum != null">
+				VersionNum = #{versionnum,jdbcType=VARCHAR},
+			</if>
+			<if test="appplatform != null">
+				AppPlatform = #{appplatform,jdbcType=VARCHAR},
+			</if>
+			<if test="appurl != null">
+				AppUrl = #{appurl,jdbcType=VARCHAR},
+			</if>
+			<if test="appsize != null">
+				AppSize = #{appsize,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadtime != null">
+				UploadTime = #{uploadtime,jdbcType=VARCHAR},
+			</if>
+			<if test="updatecontent != null">
+				UpdateContent = #{updatecontent,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.Appversion">
+		update appversion
+		set VersionNum = #{versionnum,jdbcType=VARCHAR},
+		AppPlatform =
+		#{appplatform,jdbcType=VARCHAR},
+		AppUrl = #{appurl,jdbcType=VARCHAR},
+		AppSize = #{appsize,jdbcType=VARCHAR},
+		UploadTime =
+		#{uploadtime,jdbcType=VARCHAR},
+		UpdateContent =
+		#{updatecontent,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="appversionList" resultMap="BaseResultMap">
+		select *
+		from appversion
+		order by ID desc
+	</select>
+	<select id="getMaxAppVersion" resultMap="BaseResultMap">
+		SELECT MAX(ID) as ID 
+		from appversion
+	</select>
+</mapper>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.AttachMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.Attach">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="SourceFile" property="sourcefile" jdbcType="VARCHAR" />
+		<result column="FileType" property="filetype" jdbcType="VARCHAR" />
+		<result column="FileSize" property="filesize" jdbcType="VARCHAR" />
+		<result column="SavePath" property="savepath" jdbcType="VARCHAR" />
+		<result column="SaveFile" property="savefile" jdbcType="VARCHAR" />
+		<result column="UpTime" property="uptime" jdbcType="VARCHAR" />
+		<result column="UserId" property="userid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, SourceFile, FileType, FileSize, SavePath, SaveFile,
+		UpTime, UserId
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from attach
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from attach
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.Attach">
+		<selectKey resultType="java.lang.Integer" keyProperty="id"
+			order="AFTER">
+			SELECT @@IDENTITY
+		</selectKey>
+		insert into attach (ID, SourceFile, FileType,
+		FileSize, SavePath,
+		SaveFile,
+		UpTime, UserId)
+		values (#{id,jdbcType=INTEGER},
+		#{sourcefile,jdbcType=VARCHAR},
+		#{filetype,jdbcType=VARCHAR},
+		#{filesize,jdbcType=VARCHAR},
+		#{savepath,jdbcType=VARCHAR},
+		#{savefile,jdbcType=VARCHAR},
+		#{uptime,jdbcType=VARCHAR},
+		#{userid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.Attach">
+		insert into attach
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="sourcefile != null">
+				SourceFile,
+			</if>
+			<if test="filetype != null">
+				FileType,
+			</if>
+			<if test="filesize != null">
+				FileSize,
+			</if>
+			<if test="savepath != null">
+				SavePath,
+			</if>
+			<if test="savefile != null">
+				SaveFile,
+			</if>
+			<if test="uptime != null">
+				UpTime,
+			</if>
+			<if test="userid != null">
+				UserId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sourcefile != null">
+				#{sourcefile,jdbcType=VARCHAR},
+			</if>
+			<if test="filetype != null">
+				#{filetype,jdbcType=VARCHAR},
+			</if>
+			<if test="filesize != null">
+				#{filesize,jdbcType=VARCHAR},
+			</if>
+			<if test="savepath != null">
+				#{savepath,jdbcType=VARCHAR},
+			</if>
+			<if test="savefile != null">
+				#{savefile,jdbcType=VARCHAR},
+			</if>
+			<if test="uptime != null">
+				#{uptime,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.Attach">
+		update attach
+		<set>
+			<if test="sourcefile != null">
+				SourceFile = #{sourcefile,jdbcType=VARCHAR},
+			</if>
+			<if test="filetype != null">
+				FileType = #{filetype,jdbcType=VARCHAR},
+			</if>
+			<if test="filesize != null">
+				FileSize = #{filesize,jdbcType=VARCHAR},
+			</if>
+			<if test="savepath != null">
+				SavePath = #{savepath,jdbcType=VARCHAR},
+			</if>
+			<if test="savefile != null">
+				SaveFile = #{savefile,jdbcType=VARCHAR},
+			</if>
+			<if test="uptime != null">
+				UpTime = #{uptime,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				UserId = #{userid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.Attach">
+		update attach
+		set
+		SourceFile = #{sourcefile,jdbcType=VARCHAR},
+		FileType =
+		#{filetype,jdbcType=VARCHAR},
+		FileSize = #{filesize,jdbcType=VARCHAR},
+		SavePath = #{savepath,jdbcType=VARCHAR},
+		SaveFile =
+		#{savefile,jdbcType=VARCHAR},
+		UpTime = #{uptime,jdbcType=VARCHAR},
+		UserId = #{userid,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.UserInfoMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.UserInfo">
+		<id column="UserID" property="userid" jdbcType="INTEGER" />
+		<result column="Uid" property="uid" jdbcType="VARCHAR" />
+		<result column="NickName" property="nickname" jdbcType="VARCHAR" />
+		<result column="Photo" property="photo" jdbcType="INTEGER" />
+		<result column="UserTag" property="usertag" jdbcType="VARCHAR" />
+		<result column="Phone" property="phone" jdbcType="VARCHAR" />
+		<result column="ProvinceID" property="provinceid" jdbcType="INTEGER" />
+		<result column="CityID" property="cityid" jdbcType="INTEGER" />
+		<result column="AreaID" property="areaid" jdbcType="INTEGER" />
+		<result column="Sex" property="sex" jdbcType="INTEGER" />
+		<result column="Regtime" property="regtime" jdbcType="VARCHAR" />
+		<result column="Ptatus" property="ptatus" jdbcType="INTEGER" />
+		<result column="Pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="Sign" property="sign" jdbcType="VARCHAR" />
+		<result column="Tags" property="tags" jdbcType="VARCHAR" />
+		<result column="RoleID" property="roleid" jdbcType="INTEGER" />
+		<result column="UserType" property="usertype" jdbcType="INTEGER" />
+		<result column="CID" property="cid" jdbcType="VARCHAR" />
+		<result column="UserCode" property="usercode" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		UserID, Uid, NickName, Photo, UserTag, Phone, ProvinceID,
+		CityID, AreaID,
+		Sex, Regtime,
+		Ptatus,
+		Pwd,Sign,Tags,RoleID,UserType,CID,UserCode
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from userinfo
+		where UserID = #{userid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		userinfo
+		where UserID = #{userid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.UserInfo">
+		insert into userinfo (UserID,
+		Uid, NickName,
+		Photo, UserTag, Phone,
+		ProvinceID, CityID, AreaID,
+		Sex,
+		Regtime, Ptatus,
+		Pwd,Sign,Tags,RoleID,UserType,CID,UserCode)
+		values
+		(#{userid,jdbcType=INTEGER},
+		#{uid,jdbcType=VARCHAR},
+		#{nickname,jdbcType=VARCHAR},
+		#{photo,jdbcType=INTEGER},
+		#{usertag,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{provinceid,jdbcType=INTEGER},
+		#{cityid,jdbcType=INTEGER},
+		#{areaid,jdbcType=INTEGER},
+		#{sex,jdbcType=INTEGER},
+		#{regtime,jdbcType=VARCHAR},
+		#{ptatus,jdbcType=INTEGER},
+		#{pwd,jdbcType=VARCHAR},
+		#{sign,jdbcType=VARCHAR},
+		#{tags,jdbcType=VARCHAR},
+		#{roleid,jdbcType=INTEGER},
+		#{usertype,jdbcType=INTEGER},
+		#{cid,jdbcType=VARCHAR},
+		#{usercode,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.UserInfo">
+		insert into userinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				UserID,
+			</if>
+			<if test="uid != null">
+				Uid,
+			</if>
+			<if test="nickname != null">
+				NickName,
+			</if>
+			<if test="photo != null">
+				Photo,
+			</if>
+			<if test="usertag != null">
+				UserTag,
+			</if>
+			<if test="phone != null">
+				Phone,
+			</if>
+			<if test="provinceid != null">
+				ProvinceID,
+			</if>
+			<if test="cityid != null">
+				CityID,
+			</if>
+			<if test="areaid != null">
+				AreaID,
+			</if>
+			<if test="sex != null">
+				Sex,
+			</if>
+			<if test="regtime != null">
+				Regtime,
+			</if>
+			<if test="ptatus != null">
+				Ptatus,
+			</if>
+			<if test="pwd != null">
+				Pwd,
+			</if>
+			<if test="sign != null">
+				Sign,
+			</if>
+			<if test="tags != null">
+				Tags,
+			</if>
+			<if test="roleid != null">
+				RoleID,
+			</if>
+			<if test="usertype != null">
+				UserType,
+			</if>
+			<if test="cid != null">
+				CID,
+			</if>
+			<if test="usercode != null">
+				UserCode,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				#{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=INTEGER},
+			</if>
+			<if test="usertag != null">
+				#{usertag,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceid != null">
+				#{provinceid,jdbcType=INTEGER},
+			</if>
+			<if test="cityid != null">
+				#{cityid,jdbcType=INTEGER},
+			</if>
+			<if test="areaid != null">
+				#{areaid,jdbcType=INTEGER},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="regtime != null">
+				#{regtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ptatus != null">
+				#{ptatus,jdbcType=INTEGER},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="sign != null">
+				#{sign,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				#{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="roleid != null">
+				#{roleid,jdbcType=INTEGER},
+			</if>
+			<if test="usertype != null">
+				#{usertype,jdbcType=INTEGER},
+			</if>
+			<if test="cid != null">
+				#{cid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				#{usercode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.UserInfo">
+		update userinfo
+		<set>
+			<if test="uid != null">
+				Uid = #{uid,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				NickName = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				Photo = #{photo,jdbcType=INTEGER},
+			</if>
+			<if test="usertag != null">
+				UserTag = #{usertag,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				Phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="provinceid != null">
+				ProvinceID = #{provinceid,jdbcType=INTEGER},
+			</if>
+			<if test="cityid != null">
+				CityID = #{cityid,jdbcType=INTEGER},
+			</if>
+			<if test="areaid != null">
+				AreaID = #{areaid,jdbcType=INTEGER},
+			</if>
+			<if test="sex != null">
+				Sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="regtime != null">
+				Regtime = #{regtime,jdbcType=VARCHAR},
+			</if>
+			<if test="ptatus != null">
+				Ptatus = #{ptatus,jdbcType=INTEGER},
+			</if>
+			<if test="pwd != null">
+				Pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="sign != null">
+				Sign = #{sign,jdbcType=VARCHAR},
+			</if>
+			<if test="tags != null">
+				Tags = #{tags,jdbcType=VARCHAR},
+			</if>
+			<if test="roleid != null">
+				RoleID = #{roleid,jdbcType=INTEGER},
+			</if>
+			<if test="usertype != null">
+				UserType = #{usertype,jdbcType=INTEGER},
+			</if>
+			<if test="cid != null">
+				CID = #{cid,jdbcType=VARCHAR},
+			</if>
+			<if test="usercode != null">
+				UserCode = #{usercode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where UserID = #{userid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.UserInfo">
+		update userinfo
+		set Uid = #{uid,jdbcType=VARCHAR},
+		NickName =
+		#{nickname,jdbcType=VARCHAR},
+		Photo = #{photo,jdbcType=INTEGER},
+		UserTag = #{usertag,jdbcType=VARCHAR},
+		Phone =
+		#{phone,jdbcType=VARCHAR},
+		ProvinceID = #{provinceid,jdbcType=INTEGER},
+		CityID = #{cityid,jdbcType=INTEGER},
+		AreaID =
+		#{areaid,jdbcType=INTEGER},
+		Sex = #{sex,jdbcType=INTEGER},
+		Regtime =
+		#{regtime,jdbcType=VARCHAR},
+		Ptatus = #{ptatus,jdbcType=INTEGER},
+		Pwd =
+		#{pwd,jdbcType=VARCHAR},
+		Sign =
+		#{sign,jdbcType=VARCHAR},
+		Tags =
+		#{tags,jdbcType=VARCHAR},
+		RoleID = #{roleid,jdbcType=INTEGER},
+		UserType
+		= #{usertype,jdbcType=INTEGER},
+		CID =
+		#{cid,jdbcType=VARCHAR},
+		UserCode =
+		#{usercode,jdbcType=VARCHAR},
+		where
+		UserID = #{userid,jdbcType=INTEGER}
+	</update>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select t.* from userinfo t
+	</select>
+	<select id="selectByNameAndPwd" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select t.* from userinfo t where t.Phone =
+		#{phone,jdbcType=VARCHAR} and t.Pwd =
+		#{pwd,jdbcType=VARCHAR}
+	</select>
+	<select id="getCountUserToday" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select * from
+		userinfo WHERE Regtime
+		LIKE
+		#{regtime,jdbcType=VARCHAR};
+	</select>
+	<select id="getUserIdByPhone" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select t.* from userinfo t where t.Phone =
+		#{phone,jdbcType=VARCHAR}
+	</select>
+	<select id="getUserListByTag" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select * from
+		userinfo WHERE Tags
+		LIKE
+		#{tags,jdbcType=VARCHAR};
+	</select>
+	<select id="selectByUserCodeAndPwd" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select t.* from userinfo t where t.UserCode =
+		#{usercode,jdbcType=VARCHAR} and t.Pwd =
+		#{pwd,jdbcType=VARCHAR}
+	</select>
+	<select id="selectUsers" parameterType="com.sxh.model.UserInfo"
+		resultMap="BaseResultMap">
+		select t.* from userinfo t where t.RoleID=3
+		<if test="nickname!= null and nickname!= '' ">
+			AND t.NickName LIKE #{nickname,jdbcType=VARCHAR}
+		</if>
+		<if test="phone!= null and phone!= '' ">
+			AND t.Phone = #{phone,jdbcType=VARCHAR}
+		</if>
+		<if test="ptatus!= 2 and ptatus!= '2' ">
+			AND t.Ptatus = #{ptatus,jdbcType=INTEGER}
+		</if>
+		<if test="sex!= 2 and sex!= '2' ">
+			AND t.Sex = #{sex,jdbcType=INTEGER}
+		</if>
+		ORDER BY Regtime DESC
+	</select>
+	<select id="selectByPhone" resultMap="BaseResultMap"
+		parameterType="com.sxh.model.UserInfo">
+		select * from userinfo t WHERE 1=1
+		AND Phone = #{phone}
+	</select>
+	<update id="updatePwdByPhone" parameterType="com.sxh.model.UserInfo">
+	update userinfo
+	set
+	Pwd =
+	#{pwd,jdbcType=VARCHAR}
+	where
+	Phone =
+	#{phone,jdbcType=VARCHAR}
+	</update>
+</mapper>

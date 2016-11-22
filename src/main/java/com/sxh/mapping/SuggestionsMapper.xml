@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.SuggestionsMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.Suggestions">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="SugContent" property="sugcontent" jdbcType="VARCHAR" />
+		<result column="PhoneModel" property="phonemodel" jdbcType="VARCHAR" />
+		<result column="Version" property="version" jdbcType="VARCHAR" />
+		<result column="Contract" property="contract" jdbcType="VARCHAR" />
+		<result column="SugTime" property="sugtime" jdbcType="VARCHAR" />
+		<result column="ReplyContent" property="replycontent" jdbcType="VARCHAR" />
+		<result column="ReplyStatus" property="replystatus" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, SugContent, PhoneModel, Version, Contract, SugTime,
+		ReplyContent,
+		ReplyStatus
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from suggestions
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		suggestions
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.Suggestions">
+		insert into suggestions (ID,
+		SugContent, PhoneModel,
+		Version, Contract, SugTime,
+		ReplyContent,
+		ReplyStatus)
+		values (#{id,jdbcType=INTEGER},
+		#{sugcontent,jdbcType=VARCHAR},
+		#{phonemodel,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR},
+		#{contract,jdbcType=VARCHAR},
+		#{sugtime,jdbcType=VARCHAR},
+		#{replycontent,jdbcType=VARCHAR},
+		#{replystatus,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.Suggestions">
+		insert into suggestions
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="sugcontent != null">
+				SugContent,
+			</if>
+			<if test="phonemodel != null">
+				PhoneModel,
+			</if>
+			<if test="version != null">
+				Version,
+			</if>
+			<if test="contract != null">
+				Contract,
+			</if>
+			<if test="sugtime != null">
+				SugTime,
+			</if>
+			<if test="replycontent != null">
+				ReplyContent,
+			</if>
+			<if test="replystatus != null">
+				ReplyStatus,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sugcontent != null">
+				#{sugcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="phonemodel != null">
+				#{phonemodel,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="contract != null">
+				#{contract,jdbcType=VARCHAR},
+			</if>
+			<if test="sugtime != null">
+				#{sugtime,jdbcType=VARCHAR},
+			</if>
+			<if test="replycontent != null">
+				#{replycontent,jdbcType=VARCHAR},
+			</if>
+			<if test="replystatus != null">
+				#{replystatus,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.Suggestions">
+		update suggestions
+		<set>
+			<if test="sugcontent != null">
+				SugContent = #{sugcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="phonemodel != null">
+				PhoneModel = #{phonemodel,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				Version = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="contract != null">
+				Contract = #{contract,jdbcType=VARCHAR},
+			</if>
+			<if test="sugtime != null">
+				SugTime = #{sugtime,jdbcType=VARCHAR},
+			</if>
+			<if test="replycontent != null">
+				ReplyContent = #{replycontent,jdbcType=VARCHAR},
+			</if>
+			<if test="replystatus != null">
+				ReplyStatus = #{replystatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.Suggestions">
+		update suggestions
+		set SugContent = #{sugcontent,jdbcType=VARCHAR},
+		PhoneModel =
+		#{phonemodel,jdbcType=VARCHAR},
+		Version = #{version,jdbcType=VARCHAR},
+		Contract = #{contract,jdbcType=VARCHAR},
+		SugTime =
+		#{sugtime,jdbcType=VARCHAR},
+		ReplyContent =
+		#{replycontent,jdbcType=VARCHAR},
+		ReplyStatus =
+		#{replystatus,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectAll" parameterType="com.sxh.vo.SuggestionsVo"
+		resultMap="BaseResultMap">
+		select * from suggestions
+		<where>
+			<if test="sugcontent != null and sugcontent!= '' ">
+				SugContent LIKE '%${sugcontent}%'
+			</if>
+			<if test="contract != null and contract!= ''  ">
+				AND Contract = #{contract}
+			</if>
+			<if test="version != 0 and version!= '0'  ">
+				AND Version = #{version}
+			</if>
+			<if test="replystatus != 4 and replystatus!= '4'  ">
+				AND ReplyStatus = #{replystatus}
+			</if>
+			<if test="startdate != null and startdate != ''">
+				AND SugTime &gt; #{startdate}
+			</if>
+			<if test="enddate != null and enddate != ''">
+				AND SugTime &lt; #{enddate}
+			</if>
+		</where>
+		order by ID desc
+	</select>
+</mapper>

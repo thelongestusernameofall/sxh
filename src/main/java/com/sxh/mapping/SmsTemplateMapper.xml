@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.SmsTemplateMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.SmsTemplate">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="TempName" property="tempname" jdbcType="VARCHAR" />
+		<result column="TempContent" property="tempcontent" jdbcType="VARCHAR" />
+		<result column="TempRemark" property="tempremark" jdbcType="VARCHAR" />
+		<result column="TempStatus" property="tempstatus" jdbcType="INTEGER" />
+		<result column="TempType" property="temptype" jdbcType="INTEGER" />
+		<result column="TempDelStatus" property="tempdelstatus"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, TempName, TempContent, TempRemark, TempStatus, TempType,
+		TempDelStatus
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from smstemplate
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from smstemplate
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.SmsTemplate">
+		insert into smstemplate (ID, TempName, TempContent,
+		TempRemark, TempStatus, TempType,
+		TempDelStatus)
+		values (#{id,jdbcType=INTEGER}, #{tempname,jdbcType=VARCHAR},
+		#{tempcontent,jdbcType=VARCHAR},
+		#{tempremark,jdbcType=VARCHAR}, #{tempstatus,jdbcType=INTEGER}, #{temptype,jdbcType=INTEGER},
+		#{tempdelstatus,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.SmsTemplate">
+		insert into smstemplate
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="tempname != null">
+				TempName,
+			</if>
+			<if test="tempcontent != null">
+				TempContent,
+			</if>
+			<if test="tempremark != null">
+				TempRemark,
+			</if>
+			<if test="tempstatus != null">
+				TempStatus,
+			</if>
+			<if test="temptype != null">
+				TempType,
+			</if>
+			<if test="tempdelstatus != null">
+				TempDelStatus,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="tempname != null">
+				#{tempname,jdbcType=VARCHAR},
+			</if>
+			<if test="tempcontent != null">
+				#{tempcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="tempremark != null">
+				#{tempremark,jdbcType=VARCHAR},
+			</if>
+			<if test="tempstatus != null">
+				#{tempstatus,jdbcType=INTEGER},
+			</if>
+			<if test="temptype != null">
+				#{temptype,jdbcType=INTEGER},
+			</if>
+			<if test="tempdelstatus != null">
+				#{tempdelstatus,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.SmsTemplate">
+		update smstemplate
+		<set>
+			<if test="tempname != null">
+				TempName = #{tempname,jdbcType=VARCHAR},
+			</if>
+			<if test="tempcontent != null">
+				TempContent = #{tempcontent,jdbcType=VARCHAR},
+			</if>
+			<if test="tempremark != null">
+				TempRemark = #{tempremark,jdbcType=VARCHAR},
+			</if>
+			<if test="tempstatus != null">
+				TempStatus = #{tempstatus,jdbcType=INTEGER},
+			</if>
+			<if test="temptype != null">
+				TempType = #{temptype,jdbcType=INTEGER},
+			</if>
+			<if test="tempdelstatus != null">
+				TempDelStatus = #{tempdelstatus,jdbcType=INTEGER},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.SmsTemplate">
+		update smstemplate
+		set TempName = #{tempname,jdbcType=VARCHAR},
+		TempContent = #{tempcontent,jdbcType=VARCHAR},
+		TempRemark = #{tempremark,jdbcType=VARCHAR},
+		TempStatus = #{tempstatus,jdbcType=INTEGER},
+		TempType = #{temptype,jdbcType=INTEGER},
+		TempDelStatus = #{tempdelstatus,jdbcType=INTEGER}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getSmsTemplateList" parameterType="com.sxh.model.SmsTemplate"
+		resultMap="BaseResultMap">
+		select t.* from smstemplate t WHERE t.TempDelStatus=0
+		<if test="tempname!= null and tempname!= '' ">
+			AND t.TempName LIKE '%${tempname}%'
+		</if>
+		<if test="tempstatus!=2 and tempstatus!= '2' ">
+			AND t.TempStatus = #{tempstatus,jdbcType=INTEGER}
+		</if>
+		<if test="temptype!=2 and temptype!= '2' ">
+			AND t.TempType = #{temptype,jdbcType=INTEGER}
+		</if>
+		order by t.ID desc
+	</select>
+</mapper>

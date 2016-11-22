@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sxh.dao.UserCommentMapper">
+	<resultMap id="BaseResultMap" type="com.sxh.model.UserComment">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="shareid" property="shareid" jdbcType="INTEGER" />
+		<result column="comment" property="comment" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, userid, shareid, comment
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from usercomment
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		usercomment
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.sxh.model.UserComment">
+		insert into usercomment (ID,
+		userid, shareid,
+		comment)
+		values (#{id,jdbcType=INTEGER},
+		#{userid,jdbcType=INTEGER},
+		#{shareid,jdbcType=INTEGER},
+		#{comment,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.sxh.model.UserComment">
+		insert into usercomment
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="shareid != null">
+				shareid,
+			</if>
+			<if test="comment != null">
+				comment,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="shareid != null">
+				#{shareid,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				#{comment,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.sxh.model.UserComment">
+		update usercomment
+		<set>
+			<if test="userid != null">
+				userid = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="shareid != null">
+				shareid = #{shareid,jdbcType=INTEGER},
+			</if>
+			<if test="comment != null">
+				comment = #{comment,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.sxh.model.UserComment">
+		update usercomment
+		set userid = #{userid,jdbcType=INTEGER},
+		shareid =
+		#{shareid,jdbcType=INTEGER},
+		comment = #{comment,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getUserCommentListByShareId" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select t.* from usercomment t where t.shareid =
+		#{shareid,jdbcType=INTEGER}
+	</select>
+</mapper>
